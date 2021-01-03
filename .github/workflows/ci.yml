@@ -1,0 +1,68 @@
+name: Build
+
+env:
+    PHPUNIT_FLAGS: "-v"
+    SYMFONY_LTS: 4.4.*
+    SYMFONY_LATEST: 5.2.*
+    SYMFONY_DEV: 5.3.*
+
+on:
+    push: ~
+    pull_request: ~
+    release:
+        types: [ created ]
+    schedule:
+        -   cron: "0 1 * * 6" # Run at 1am every Saturday
+
+jobs:
+    build:
+
+        runs-on: ubuntu-latest
+
+        name: "PHP ${{ matrix.php }}${{ matrix.symfony != '' && format(', Symfony {0}', matrix.symfony) || '' }}"
+        strategy:
+            fail-fast: false
+            matrix:
+                include:
+                    -
+                        php: 7.3
+                        symfony: ${SYMFONY_LTS}
+                    -
+                        php: 7.3
+                        symfony: ${SYMFONY_LATEST}
+
+        steps:
+            -   uses: actions/checkout@v2
+
+            -
+                name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: "${{ matrix.php }}"
+                    coverage: none
+
+            -
+                name: Restrict Symfony version
+                if: matrix.symfony != ''
+                run: |
+                    composer global require --no-progress --no-scripts --no-plugins "symfony/flex"
+                    composer config extra.symfony.require "${{ matrix.symfony }}"
+                    composer config extra.symfony.require "${SYMFONY_VERSION}"
+                    composer config minimum-stability "dev"
+                    composer config prefer-stable true
+
+            -
+                name: Install dependencies
+                run: composer update
+
+            -
+                name: Validate composer.json
+                run: composer validate --strict --no-check-lock
+
+            -
+                name: Run phpspec
+                run: phpdbg -qrr vendor/bin/phpspec run --no-interaction -f dot
+
+            -
+                name: Run PHPUnit
+                run: vendor/bin/phpunit $PHPUNIT_FLAGS

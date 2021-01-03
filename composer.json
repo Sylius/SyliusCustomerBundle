@@ -54,9 +54,6 @@
         "symfony/dependency-injection": "^4.4",
         "symfony/form": "^4.4"
     },
-    "config": {
-        "bin-dir": "bin"
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.9-dev"
@@ -75,12 +72,6 @@
             "test/app/AppKernel.php"
         ]
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../../*/*"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
