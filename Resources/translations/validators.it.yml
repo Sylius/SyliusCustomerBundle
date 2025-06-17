@@ -15,7 +15,7 @@ sylius:
             not_blank: 'Per favore scegli il tuo genere.'
         email:
             already_used: 'Questa email è già utilizzata, per favore effettua il login o usa la password dimenticata.'
-            max: 'L\'email non deve essere più lunga di {{ limit }} caratteri.'
+            max: 'L''email non deve essere più lunga di {{ limit }} caratteri.'
             not_blank: 'Per favore inserisci la tua email.'
             invalid: 'Questa email non è valida.'
             unique: 'Questa email è già utilizzata.'
