@@ -14,12 +14,12 @@ sylius:
         gender:
             not_blank: 'Bitte wählen Sie Ihr Geschlecht aus.'
         email:
-            already_used: 'Diese E-Mail-Adresse wird bereits verwendet, bitte melden Sie sich an oder nutzen Sie das Passwort-Wiederherstellungsverfahren.'
-            max: 'Die E-Mail darf höchstens {{ limit }} Zeichen lang sein.'
+            already_used: 'Diese E-Mail-Adresse wird bereits verwendet, bitte melden Sie sich an oder verwenden Sie das vergessene Passwort.'
+            max: 'Die E-Mail-Adresse darf höchstens {{ limit }} Zeichen lang sein.'
             not_blank: 'Bitte geben Sie Ihre E-Mail-Adresse ein.'
             invalid: 'Diese E-Mail-Adresse ist ungültig.'
             unique: 'Diese E-Mail-Adresse wird bereits verwendet.'
-            registered: 'Diese E-Mail-Adresse ist bereits registriert, bitte melden Sie sich an oder nutzen Sie das Passwort-Wiederherstellungsverfahren.'
+            registered: 'Diese E-Mail-Adresse ist bereits registriert, bitte melden Sie sich an oder verwenden Sie das vergessene Passwort.'
         phone_number:
             max: 'Die Telefonnummer darf höchstens {{ limit }} Zeichen lang sein.'
     customer_group:
@@ -27,7 +27,7 @@ sylius:
             max_length: 'Der Code darf höchstens {{ limit }} Zeichen lang sein.'
             regex: 'Der Code der Kundengruppe darf nur aus Buchstaben, Zahlen, Bindestrichen und Unterstrichen bestehen.'
             unique: 'Der Code der Kundengruppe muss eindeutig sein.'
-            not_blank: 'Bitte geben Sie einen Code für die Kundengruppe ein.'
+            not_blank: 'Bitte geben Sie einen Kundengruppencode ein.'
         name:
             max: 'Der Name der Kundengruppe darf höchstens {{ limit }} Zeichen lang sein.'
             min: 'Der Name der Kundengruppe muss mindestens {{ limit }} Zeichen lang sein.'
